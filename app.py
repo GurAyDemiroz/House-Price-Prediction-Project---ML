@@ -11,7 +11,6 @@ from loading_page import show_loading_animation
 import matplotlib.pyplot as plt
 import io
 import base64
-from pipeline import DataPreprocessingPipeline
 import altair as alt
 
 # Sayfa yapılandırması; ilk komut olmalı
