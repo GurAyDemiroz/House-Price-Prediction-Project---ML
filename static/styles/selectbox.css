@@ -1,0 +1,65 @@
+/* Selectbox Temel Stili */
+.stSelectbox [data-baseweb="select"] {
+  background-color: #e5e7eb !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px !important;
+  color: #4b5563 !important;
+  font-size: 1rem !important;
+}
+
+/* Selectbox Etiketleri */
+.stSelectbox label {
+  color: #2563eb !important;
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+  display: block !important;
+  opacity: 1 !important;
+}
+
+/* Selectbox Dropdown */
+div[role="listbox"] ul {
+  background-color: #f3f4f6 !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Dropdown Seçenekler */
+div[role="listbox"] ul li {
+  color: #4b5563 !important;
+  background-color: #f3f4f6 !important;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Dropdown Hover */
+div[role="listbox"] ul li:hover {
+  background-color: #e5e7eb !important;
+  color: #1f2937 !important;
+}
+
+/* Dropdown Seçili */
+div[role="listbox"] ul li[aria-selected="true"] {
+  background-color: #d1d5db !important;
+  color: #111827 !important;
+  font-weight: 500 !important;
+}
+
+/* Selectbox Ok İkonu */
+.stSelectbox [data-baseweb="select"] svg {
+  color: #94a3b8 !important;
+}
+
+/* Selectbox Hover Durumu */
+.stSelectbox [data-baseweb="select"]:hover {
+  background-color: #d1d5db !important;
+  border-color: #9ca3af !important;
+}
+
+/* Selectbox Focus Durumu */
+.stSelectbox [data-baseweb="select"]:focus-within {
+  background-color: #e5e7eb !important;
+  border-color: #9ca3af !important;
+  box-shadow: none !important;
+}

@@ -1,0 +1,599 @@
+/* Ana Temalar */
+:root {
+  --primary: #1a73e8;
+  --secondary: #4285f4;
+  --background: #f8f9fa;
+  --surface: #ffffff;
+  --text: #202124;
+  --error: #d93025;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --light-red: #ffebee;
+}
+
+/* Genel Stil */
+.stApp {
+  background-color: var(--background);
+}
+
+/* Başlıklar ve Bölümler */
+.section-header {
+  color: var(--primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: 1rem;
+  display: block;
+  width: 100%;
+}
+
+/* Bölüm Başlıkları için yeni stiller */
+.css-10trblm {
+  color: #1a73e8 !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+  padding-bottom: 0.5rem !important;
+  border-bottom: 2px solid #1a73e8 !important;
+}
+
+.css-10trblm::before {
+  margin-right: 0.5rem !important;
+}
+
+/* Form Alanları */
+/* Sayısal input container ve giriş alanı için */
+.stNumberInput > div,
+.stNumberInput > div > div,
+.stNumberInput input,
+.stNumberInput > div[data-baseweb="input"],
+.stNumberInput > div[data-baseweb="input"] > div,
+.stNumberInput > div[data-baseweb="input"] > div > input,
+.stNumberInput > div > div > div,
+div[data-baseweb="base-input"],
+div[data-baseweb="input"],
+div[data-baseweb="select"],
+div[data-baseweb="select"] > div,
+div[data-baseweb="select"] div[role="combobox"],
+.stSelectbox > div > div {
+  background-color: #f3f4f6 !important;
+  border-color: var(--gray-300) !important;
+  border-radius: 8px !important;
+}
+
+.stNumberInput input[type="number"] {
+  background-color: #f3f4f6 !important;
+  padding: 0.5rem !important;
+  transition: all 0.3s ease;
+}
+
+.stNumberInput > div > div {
+  background-color: #f3f4f6 !important;
+}
+
+.stNumberInput > div > div > input,
+.stNumberInput > div[data-baseweb="input"] {
+  background-color: #f3f4f6 !important;
+  border: 1px solid var(--gray-300) !important;
+  border-radius: 8px !important;
+}
+
+.stNumberInput > div > div > input:hover {
+  border-color: var(--gray-400) !important;
+}
+
+/* Sayısal input butonları için yeni stiller */
+.stNumberInput > div > div > button,
+button[aria-label="Increment"],
+button[aria-label="Decrement"] {
+  background-color: #dddddd !important; /* Açık gri */
+  color: #333333 !important;
+  border: none !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.stNumberInput > div > div > button:hover,
+button[aria-label="Increment"]:hover,
+button[aria-label="Decrement"]:hover {
+  background-color: #e0e7ff !important; /* Açık mavi-gri ton */
+  color: #333333 !important;
+  transform: scale(1.05) !important;
+}
+
+.stNumberInput > div > div > button:active,
+button[aria-label="Increment"]:active,
+button[aria-label="Decrement"]:active {
+  background-color: #c7d2fe !important; /* Biraz daha koyu mavi-gri */
+  transform: scale(0.98) !important;
+}
+
+/* Sayısal input butonları için yeni stiller - Çok daha spesifik seçiciler kullanıyoruz */
+html body .stApp .element-container .stNumberInput > div > div > button,
+html body .stApp button[aria-label="Increment"],
+html body .stApp button[aria-label="Decrement"] {
+  background-color: #dddddd !important; /* Açık gri */
+  color: #333333 !important;
+  border: none !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+html body .stApp .element-container .stNumberInput > div > div > button:hover,
+html body .stApp button[aria-label="Increment"]:hover,
+html body .stApp button[aria-label="Decrement"]:hover {
+  background-color: #e0e7ff !important; /* Açık mavi-gri ton */
+  color: #333333 !important;
+  transform: scale(1.05) !important;
+}
+
+html body .stApp .element-container .stNumberInput > div > div > button:active,
+html body .stApp button[aria-label="Increment"]:active,
+html body .stApp button[aria-label="Decrement"]:active {
+  background-color: #c7d2fe !important; /* Biraz daha koyu mavi-gri */
+  transform: scale(0.98) !important;
+}
+
+/* Safari ve Chrome için spinner stil desteği */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1 !important;
+  background-color: #dddddd !important; /* Açık gri */
+}
+
+input[type="number"]:hover::-webkit-inner-spin-button,
+input[type="number"]:hover::-webkit-outer-spin-button {
+  background-color: #e0e7ff !important; /* Açık mavi-gri ton */
+}
+
+/* Safari ve Chrome için spinner stil desteği - Daha yüksek öncelik */
+html body .stApp input[type="number"]::-webkit-inner-spin-button,
+html body .stApp input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1 !important;
+  background-color: #dddddd !important; /* Açık gri */
+}
+
+html body .stApp input[type="number"]:hover::-webkit-inner-spin-button,
+html body .stApp input[type="number"]:hover::-webkit-outer-spin-button {
+  background-color: #e0e7ff !important; /* Açık mavi-gri ton */
+}
+
+/* Selectbox Stilleri */
+div[data-baseweb="select"] {
+  background-color: #f3f4f6 !important; /* Gri arka plan */
+  border: 1px solid var(--gray-300) !important;
+  border-radius: 8px !important;
+  position: relative; /* Relative positioning for the arrow */
+}
+
+div[data-baseweb="select"]:hover {
+  border-color: var(--gray-400) !important;
+}
+
+div[data-baseweb="select"] > div {
+  background-color: #f3f4f6 !important; /* Gri arka plan */
+  border: none !important;
+  color: var(--text) !important;
+  font-size: 1rem !important;
+  min-height: 40px !important;
+}
+
+/* Selectbox icon rengini değiştir */
+div[data-baseweb="select"] svg {
+  fill: #374151 !important; /* Koyu gri renk */
+  transition: all 0.3s ease !important;
+}
+
+div[data-baseweb="select"]:hover svg {
+  fill: #1a73e8 !important; /* Hover durumunda mavi renk */
+}
+
+/* Eski ok ikonunu kaldır */
+div[data-baseweb="select"]::after {
+  display: none !important;
+}
+
+/* Input Container Düzeni */
+.input-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-container > div {
+  flex: 1;
+}
+
+/* Tahmin Butonu */
+.stButton button {
+  background: linear-gradient(
+    120deg,
+    #34d399,
+    #10b981
+  ) !important; /* Yeşil tonları */
+  color: white !important;
+  padding: 0.8rem 1.5rem !important;
+  border-radius: 8px !important;
+  width: 100% !important;
+  font-weight: 600 !important;
+  margin-top: 1rem !important;
+  transition: transform 0.2s, background 0.2s !important;
+}
+
+.stButton button:hover {
+  transform: translateY(-2px) !important;
+  background: linear-gradient(
+    120deg,
+    #10b981,
+    #059669
+  ) !important; /* Daha koyu yeşil tonları */
+}
+
+/* Tahmin Butonu - Düzeltilmiş ve daha spesifik seçiciler */
+button[kind="primary"],
+.stButton > button,
+.stButton button,
+div[data-testid="stFormSubmitButton"] > button {
+  background: linear-gradient(
+    120deg,
+    #1a73e8,
+    #4285f4
+  ) !important; /* Ana tema renkleri */
+  background-color: #1a73e8 !important;
+  color: white !important;
+  padding: 0.8rem 1.5rem !important;
+  border-radius: 8px !important;
+  width: 100% !important;
+  font-weight: 600 !important;
+  margin-top: 1rem !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 4px rgba(26, 115, 232, 0.1) !important;
+}
+
+button[kind="primary"]:hover,
+.stButton > button:hover,
+.stButton button:hover,
+div[data-testid="stFormSubmitButton"] > button:hover {
+  background: linear-gradient(
+    120deg,
+    #4285f4,
+    #1a73e8
+  ) !important; /* Hover durumunda ters gradient */
+  background-color: #4285f4 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 6px rgba(26, 115, 232, 0.2) !important;
+}
+
+/* Sonuç Kartı Stilleri */
+.result-card {
+  background: var(--surface);
+  padding: 1.2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.result-card h2 {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.prediction-text {
+  font-size: 2.2rem;
+  color: var(--primary);
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+/* Tahmin Detayları Stili */
+.details-header {
+  color: #1f2937 !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+/* Input etiketleri için yeni stiller */
+.stNumberInput > div > label,
+.stSelectbox > div > label,
+div[data-baseweb="select"] > label {
+  color: #374151 !important; /* Koyu gri renk */
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+  display: block !important;
+}
+
+/* Input etiketleri için güncellenmiş stiller */
+.stNumberInput > div > label,
+.stSelectbox > div > label,
+[data-testid="stWidgetLabel"] {
+  color: #1f2937 !important; /* Daha koyu gri */
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+  display: block !important;
+  opacity: 1 !important; /* Tam opaklık */
+  visibility: visible !important; /* Görünürlük zorla */
+  height: auto !important; /* Otomatik yükseklik */
+  line-height: 1.5 !important; /* Satır yüksekliği */
+}
+
+/* Form elemanları için stil güncellemesi */
+.stSelectbox,
+.stNumberInput {
+  margin-bottom: 1.2rem !important;
+}
+
+.stSelectbox > div,
+.stNumberInput > div {
+  margin-top: 0.3rem !important;
+}
+
+/* Form Alanları - Tüm çerçeveler için ortak stil */
+.stNumberInput > div,
+.stNumberInput > div > div,
+.stNumberInput input,
+.stNumberInput > div[data-baseweb="input"],
+.stNumberInput > div[data-baseweb="input"] > div,
+.stNumberInput > div[data-baseweb="input"] > div > input,
+.stNumberInput > div > div > div,
+div[data-baseweb="base-input"],
+div[data-baseweb="input"],
+div[data-baseweb="select"],
+div[data-baseweb="select"] > div,
+div[data-baseweb="select"] div[role="combobox"],
+.stSelectbox > div > div {
+  background-color: #f3f4f6 !important;
+  border-color: var(--gray-300) !important;
+  border-radius: 8px !important;
+}
+
+/* Form Alanları - Sayısal ve select input değerleri için metin rengi */
+.stNumberInput input[type="number"],
+div[data-baseweb="select"] div[role="combobox"],
+div[data-baseweb="select"] div[role="option"],
+.stSelectbox input {
+  color: #374151 !important; /* Koyu gri renk */
+  font-weight: 500 !important;
+}
+
+/* Input alanlarına focus olduğunda da rengi koru */
+.stNumberInput input[type="number"]:focus,
+div[data-baseweb="select"] div[role="combobox"]:focus {
+  color: #374151 !important;
+}
+
+/* Input container arka planı */
+.stNumberInput,
+.stSelectbox {
+  background: #f3f4f6 !important;
+}
+
+/* Form container ve input yükseklikleri için ortak stil */
+.stNumberInput > div,
+.stSelectbox > div,
+div[data-baseweb="select"] {
+  min-height: 85px !important; /* Input container yüksekliği */
+  margin-bottom: 1rem !important;
+}
+
+/* Input ve select elementlerinin kendisi için yükseklik */
+.stNumberInput input,
+div[data-baseweb="select"] > div {
+  height: 42px !important; /* Input element yüksekliği */
+  min-height: 42px !important;
+}
+
+/* Label hizalaması için */
+.stNumberInput > div > label,
+.stSelectbox > div > label,
+div[data-baseweb="select"] > label {
+  height: 20px !important; /* Label yüksekliği */
+  margin-bottom: 8px !important; /* Label alt boşluğu */
+  line-height: 20px !important;
+}
+
+/* Form containerları için ortak yükseklik */
+.stNumberInput > div,
+div[data-baseweb="select"],
+.stSelectbox > div {
+  height: 42px !important;
+  min-height: 42px !important;
+  line-height: 42px !important;
+}
+
+/* Input ve select elementleri için yükseklik */
+.stNumberInput input,
+div[data-baseweb="select"] > div,
+div[data-baseweb="base-input"] {
+  height: 42px !important;
+  min-height: 42px !important;
+  line-height: normal !important;
+}
+
+/* Label'lar için margin ayarı */
+.stNumberInput > div > label,
+.stSelectbox > div > label,
+div[data-baseweb="select"] > label {
+  margin-top: -5px !important;
+  margin-bottom: 5px !important;
+  line-height: 1 !important;
+  display: block !important;
+}
+
+/* Form elementleri için container stilleri */
+.stNumberInput > div,
+.stSelectbox > div {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* Input alanları için ana stiller */
+.stNumberInput input,
+div[data-baseweb="select"] > div,
+.stSelectbox > div > div {
+  background-color: #f3f4f6 !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  border: 1px solid var(--gray-300) !important;
+  border-radius: 8px !important;
+}
+
+/* Label ve input arası boşluk */
+.stNumberInput > div > label,
+.stSelectbox > div > label,
+div[data-baseweb="select"] > label {
+  margin-bottom: 5px !important;
+}
+
+/* Container arası boşluk */
+.stNumberInput,
+.stSelectbox {
+  margin-bottom: 1rem !important;
+  background: transparent !important;
+}
+
+/* Expander (Detaylı Bilgiler) başlığı için stil */
+.streamlit-expanderHeader,
+[data-testid="stExpander"] div[role="button"] {
+  color: #1a73e8 !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  background-color: white !important;
+  border-radius: 8px !important;
+  padding: 0.5rem 1rem !important;
+  margin-bottom: 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Expander hover durumu */
+.streamlit-expanderHeader:hover,
+[data-testid="stExpander"] div[role="button"]:hover {
+  background-color: #fff1f2 !important;
+}
+
+/* Expander icon rengi */
+[data-testid="stExpander"] svg {
+  fill: #1a73e8 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Expander icon hover rengi */
+[data-testid="stExpander"] div[role="button"]:hover svg {
+  fill: #fb7185 !important;
+}
+
+/* Expander başlık metni */
+[data-testid="stExpander"] span {
+  color: #1a73e8 !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+}
+
+/* Expander (Detaylı Bilgiler) stil güncellemeleri */
+[data-testid="stExpander"] div[role="button"] {
+  background-color: #ffffff !important;
+  color: #1a73e8 !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  border-radius: 8px !important;
+  padding: 0.8rem 1.2rem !important;
+  margin-bottom: 1rem !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+/* Hover durumu için yeni stil */
+[data-testid="stExpander"] div[role="button"]:hover {
+  background-color: #f0f7ff !important; /* Açık mavi arka plan */
+  border-color: #1a73e8 !important; /* Mavi kenarlık */
+  box-shadow: 0 2px 4px rgba(26, 115, 232, 0.1) !important; /* Hafif gölge */
+}
+
+/* İkon stilleri */
+[data-testid="stExpander"] svg {
+  fill: #1a73e8 !important;
+  transition: all 0.3s ease !important;
+}
+
+[data-testid="stExpander"] div[role="button"]:hover svg {
+  transform: scale(1.1) !important;
+}
+
+/* Dropdown menu (açılan seçenek listesi) stilleri */
+div[role="listbox"],
+ul[role="listbox"] {
+  background-color: #f3f4f6 !important;
+  border: 1px solid var(--gray-300) !important;
+  border-radius: 8px !important;
+}
+
+/* Dropdown içindeki her bir seçenek için stiller */
+div[role="option"],
+li[role="option"] {
+  background-color: #f3f4f6 !important;
+  color: #374151 !important;
+  transition: all 0.2s ease !important;
+  padding: 8px 12px !important;
+}
+
+/* Seçenek hover durumu */
+div[role="option"]:hover,
+li[role="option"]:hover {
+  background-color: #e5e7eb !important;
+  cursor: pointer !important;
+}
+
+/* Seçili olan option için stil */
+div[role="option"][aria-selected="true"],
+li[role="option"][aria-selected="true"] {
+  background-color: #e5e7eb !important;
+  color: #1a73e8 !important;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth !important;
+}
+
+#prediction-result {
+  scroll-margin-top: 20px !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+/* Tahmin sonucu container stili */
+.prediction-container {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 2rem;
+  margin: 2rem 0;
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  scroll-margin-top: 80px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
