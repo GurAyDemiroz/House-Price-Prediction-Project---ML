@@ -11,6 +11,7 @@ from loading_page import show_loading_animation
 import matplotlib.pyplot as plt
 import io
 import base64
+from pipeline import DataPreprocessingPipeline
 import altair as alt
 
 # Sayfa yapılandırması; ilk komut olmalı
@@ -21,11 +22,11 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Uygulama başlığı ve tanıtımını güncelle - kutu arka planı kaldırıldı
+# Uygulama başlığı ve tanıtımını güncelle - başlık ile form arası mesafeyi daha da azalttık
 st.markdown("""
-    <div style="text-align: center; padding: 2rem 1rem; margin-bottom: 1.5rem;">
-        <h1 style="color: #202124; font-size: 2.5rem; margin-bottom: 1rem;">🏠 Adana Akıllı Ev Fiyat Tahmini</h1>
-        <p style="color: #202124; font-size: 1.1rem; margin-bottom: 0.5rem;">
+    <div style="text-align: center; padding: 0.9rem 1rem 0.05rem 1rem; margin-top: 1.2rem; margin-bottom: 0;">
+        <h1 style="color: #202124; font-size: 2.2rem; margin-bottom: 0.05rem;">🏠 Adana Akıllı Ev Fiyat Tahmini</h1>
+        <p style="color: #202124; font-size: 1rem; margin-bottom: 0;">
             Yapay Zeka Destekli Anlık Fiyat Tahmin Sistemi
         </p>
     </div>
@@ -225,8 +226,54 @@ def set_custom_style():
             --error: #d93025;
         }
 
+        /* Başlık ve formlar arasındaki boşluğu azaltmak için düzenlemeler */
+        .block-container {
+            padding-top: 0.3rem !important;
+            padding-bottom: 1rem !important;
+        }
+        
+        /* Main alanı padding değerlerini düzenle */
+        .main .block-container {
+            padding: 0.3rem 1rem 1rem 1rem !important;
+        }
+        
+        /* Streamlit form grupları arasındaki boşluğu azalt */
+        div.row-widget.stRadio > div {
+            margin-bottom: 0.3rem !important;
+        }
+        
+        /* Tüm form elemanları arasındaki boşlukları azalt */
+        .stNumberInput, .stSelectbox, .stSlider {
+            margin-bottom: 0.3rem !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        
+        /* Etiket (label) boyutlarını küçült */
+        p, .stMarkdown p, label {
+            margin-bottom: 0.2rem !important;
+            line-height: 1.2 !important;
+            font-size: 0.9rem !important;
+        }
+        
+        /* Form başlıkları ve aralarındaki boşlukları azalt */
+        .css-10trblm {
+            margin-top: 0 !important;
+            margin-bottom: 0.1rem !important;
+            font-size: 1.1rem !important; 
+        }
+
+        /* Başlık div'i ile ilk form elemanı arasındaki boşluğu azalt */
+        div:has(> .css-10trblm) + div {
+            margin-top: 0 !important;
+        }
+        
+        /* Markdown ve widget arasındaki boşluğu azalt */
+        .element-container + .element-container {
+            margin-top: 0 !important;
+        }
+        
         /* DOĞRUDAN HATA MESAJLARI İÇİN ZORLAYICI CSS RESET */
-        /* Tüm Streamlit hata mesajlarının arka planı ve yazı rengi */
         div[data-testid="stAlert"] {
             background-color: #ffebee !important;
             border-color: #b71c1c !important;
@@ -274,9 +321,29 @@ def set_custom_style():
             color: #000000 !important;
             text-shadow: none !important;
         }
-
-        /* Diğer mevcut CSS kodları */
-        // ...existing code...
+        
+        /* Elemanlar arası boşlukları azaltan stiller */
+        .css-10trblm {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Form elemanları arasındaki boşlukları azalt */
+        .stNumberInput, .stSelectbox {
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Container padding değerlerini azalt */
+        .block-container {
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+        }
+        
+        /* Main alanı padding değerlerini düzenle */
+        .main .block-container {
+            padding: 1rem 1rem 1rem 1rem !important;
+        }
+        
         </style>
     """, unsafe_allow_html=True)
 
@@ -301,11 +368,27 @@ def create_feature_input_form(feature_info):
             
     screen_width = st.session_state.get("screen_width", 1200)  # Varsayılan değer
     
+    # Form başlıklarını doğrudan HTML ile daha belirgin bir şekilde göster - rengi yeniden mavi yap
+    form_header_style = """
+    <style>
+    .form-header {
+        font-size: 1.7rem !important;
+        font-weight: 700 !important;
+        color: #1a73e8 !important;
+        padding-bottom: 0.3rem !important;
+        margin-bottom: 0.6rem !important;
+        border-bottom: 3px solid #1a73e8 !important;
+        display: block !important;
+    }
+    </style>
+    """
+    st.markdown(form_header_style, unsafe_allow_html=True)
+    
     if screen_width > 768:
         col1, col2 = st.columns(2)
         
         with col1:
-            st.markdown('<p class="css-10trblm">📐 Alan ve Oda Bilgileri</p>', unsafe_allow_html=True)
+            st.markdown('<div class="form-header">📐 Alan ve Oda Bilgileri</div>', unsafe_allow_html=True)
             net_area = st.number_input("Net Alan (m²)", min_value=40, max_value=500, value=100, on_change=reset_prediction)
             room_count = st.number_input("Oda Sayısı", min_value=1, max_value=10, value=3, on_change=reset_prediction)
             living_room_count = st.number_input("Salon Sayısı", min_value=0, max_value=4, value=1, on_change=reset_prediction)
@@ -316,7 +399,7 @@ def create_feature_input_form(feature_info):
             furnished = st.selectbox("Eşyalı mı?", options=furnished_options, on_change=reset_prediction)
         
         with col2:
-            st.markdown('<p class="css-10trblm">🏙️ Konum ve Bina Bilgileri</p>', unsafe_allow_html=True)
+            st.markdown('<div class="form-header">🏙️ Konum ve Bina Bilgileri</div>', unsafe_allow_html=True)
             subcol1, subcol2 = st.columns(2)
             
             district_neighborhoods = feature_info.get('district_neighborhoods', {})
@@ -393,7 +476,7 @@ def create_feature_input_form(feature_info):
                 heating_options = ['Kombi', 'Merkezi', 'Soba', 'Yok']
             heating = st.selectbox("Isıtma Tipi", options=heating_options, on_change=reset_prediction)
     else:
-        st.markdown('<p class="css-10trblm">📐 Alan ve Oda Bilgileri</p>', unsafe_allow_html=True)
+        st.markdown('<div class="form-header">📐 Alan ve Oda Bilgileri</div>', unsafe_allow_html=True)
         net_area = st.number_input("Net Alan (m²)", min_value=40, max_value=500, value=100, on_change=reset_prediction)
         room_count = st.number_input("Oda Sayısı", min_value=1, max_value=10, value=3, on_change=reset_prediction)
         living_room_count = st.number_input("Salon Sayısı", min_value=0, max_value=4, value=1, on_change=reset_prediction)
@@ -470,6 +553,8 @@ def create_feature_input_form(feature_info):
         if not heating_options:
             heating_options = ['Kombi', 'Merkezi', 'Soba', 'Yok']
         heating = st.selectbox("Isıtma Tipi", options=heating_options, on_change=reset_prediction)
+        
+        st.markdown('<div class="form-header">🏙️ Konum ve Bina Bilgileri</div>', unsafe_allow_html=True)
     
     submit_button = st.button("💰 Fiyat Tahmini Yap", use_container_width=True)
     
@@ -513,16 +598,16 @@ def show_prediction_result(prediction, features, building_age_options):
     formatted_upper = "{:,.0f}".format(upper_bound).replace(",", ".")
     
     st.markdown("""
-    <div style="width:100%; margin:0 auto; padding:min(20px, 5vw); 
+    <div style="width:100%; margin:0 auto; padding:min(15px, 3vw); 
         background: linear-gradient(135deg, #ffffff, #e1f5fe); 
         border-radius:12px; 
         box-shadow: 0 3px 10px rgba(0,0,0,0.1); 
         text-align:center;">
-        <h2 style="color:#1a73e8; margin-bottom:10px; font-weight:600; font-size:clamp(1.2rem, 3vw, 1.5rem);">Tahmin Edilen Fiyat</h2>
-        <h1 style="color:#1a73e8; font-size:clamp(1.8rem, 5vw, 2.2rem); margin:10px 0; font-weight:700;">
+        <h2 style="color:#1a73e8; margin-bottom:5px; font-weight:600; font-size:clamp(1.2rem, 3vw, 1.5rem);">Tahmin Edilen Fiyat</h2>
+        <h1 style="color:#1a73e8; font-size:clamp(1.8rem, 5vw, 2.2rem); margin:5px 0; font-weight:700;">
             {} TL
         </h1>
-        <p style="color:#5f6368; margin-top:8px; font-size:clamp(0.7rem, 1.5vw, 0.85rem);">
+        <p style="color:#5f6368; margin-top:5px; font-size:clamp(0.7rem, 1.5vw, 0.85rem);">
             Bu tahmin, girdiğiniz ev özelliklerine göre hesaplanmıştır.<br>
             Tahmin ±%10 aralığında değişebilir ({} - {} TL)
         </p>
@@ -611,10 +696,56 @@ def main():
     load_custom_css()
     set_custom_style()
     
+    # Özel CSS stil eklemelerini - başlık ve form arası boşluğu daha fazla azalt
+    st.markdown("""
+    <style>
+        /* Ana uygulamanın üst kısmı ve başlık ile form arasındaki boşluğu azalt */
+        .main .block-container {
+            padding-top: 0rem !important;
+        }
+        
+        /* Form grupları arasındaki boşluğu azalt */
+        .stSelectbox, .stNumberInput {
+            padding-top: 0 !important;
+            margin-bottom: 0.2rem !important;
+        }
+        
+        /* Widget etiketleri */
+        .stMarkdown p, label {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            line-height: 1 !important;
+        }
+        
+        /* Form başlıkları ile ilk elemanlar arasındaki mesafeyi ayarla */
+        .form-header + div {
+            margin-top: 0.3rem !important;
+        }
+        
+        /* Başlık ve form arasındaki boşluğu azalt - daha agresif seçiciler */
+        header + div > div:first-child {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        
+        /* Başlık sonrası tüm boşlukları kaldır */
+        .element-container:has(div[data-testid="stMarkdown"]) + .element-container {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        
+        /* Streamlit başlık ve form arasındaki gap'i azalt */
+        .css-1544g2n.e1fqkh3o4 {
+            padding-top: 0 !important;
+            margin-top: 0 !important;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
     # Animasyonu sadece ilk yüklemede göstermek için session state kullan
     if "first_load" not in st.session_state:
         st.session_state["first_load"] = True
-        loading_placeholder = show_loading_animation("Uygulama başlatılıyor...", duration=2)
+        loading_placeholder = show_loading_animation("Uygulama başlatılıyor...", duration=1)  # Animasyon süresini kısalttım
     else:
         loading_placeholder = None
     
